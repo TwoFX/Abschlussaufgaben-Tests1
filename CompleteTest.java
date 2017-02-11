@@ -16,7 +16,21 @@ public class CompleteTest
 
 		Console.main(null);
 
-		assertArrayEquals(new Terminal.Output[] { new Terminal.StringOutput("Ok") }, Terminal.getOutput().toArray(new Terminal.Output[0]));
+		assertArrayEquals(new Terminal.Output[] { new Terminal.StringOutput("Ok") }, Terminal.getOutput());
+		Terminal.finish();
+	}
+
+	@Test
+	public void hypotheticalTest()
+	{
+		Terminal.initialize("add author A,B", "add author", "quit");
+
+		Console.main(null);
+
+		assertArrayEquals(new Terminal.Output[] {
+			new Terminal.StringOutput("Ok"),
+			Terminal.error,
+			new Terminal.StringOutput("Ok") }, Terminal.getOutput());
 		Terminal.finish();
 	}
 }

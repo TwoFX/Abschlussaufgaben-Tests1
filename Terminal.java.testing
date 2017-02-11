@@ -61,9 +61,9 @@ public final class Terminal {
             throw new RuntimeException("Program did not consume all input");
     }
 
-    public static List<Output> getOutput()
+    public static Output[] getOutput()
     {
-        return Collections.unmodifiableList(output);
+        return output.toArray(new Output[0]);
     }
 
     public static void printError(final String message) {
