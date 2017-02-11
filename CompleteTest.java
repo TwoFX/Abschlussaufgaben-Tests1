@@ -9,28 +9,30 @@ import java.util.*;
 public class CompleteTest
 {
 
-	@Test
-	public void immediatelyQuitTest()
-	{
-		Terminal.initialize("quit");
+    @Test
+    public void immediatelyQuitTest()
+    {
+        Terminal.initialize("quit");
 
-		Console.main(null);
+        Console.main(null);
 
-		assertArrayEquals(new Terminal.Output[] { new Terminal.StringOutput("Ok") }, Terminal.getOutput());
-		Terminal.finish();
-	}
+        assertArrayEquals(new Terminal.Output[] { new Terminal.StringOutput("Ok") }, Terminal.getOutput());
+        Terminal.finish();
+    }
 
-	@Test
-	public void hypotheticalTest()
-	{
-		Terminal.initialize("add author A,B", "add author", "quit");
+    @Test
+    public void hypotheticalTest()
+    {
+        Terminal.initialize("add author A,B", "add author", "quit");
 
-		Console.main(null);
+        Console.main(null);
 
-		assertArrayEquals(new Terminal.Output[] {
-			new Terminal.StringOutput("Ok"),
-			Terminal.error,
-			new Terminal.StringOutput("Ok") }, Terminal.getOutput());
-		Terminal.finish();
-	}
+        assertArrayEquals(new Terminal.Output[] {
+            new Terminal.StringOutput("Ok"),
+            Terminal.error,
+            new Terminal.StringOutput("Ok") }, Terminal.getOutput());
+        Terminal.finish();
+    }
 }
+
+// vim: set expandtab:
