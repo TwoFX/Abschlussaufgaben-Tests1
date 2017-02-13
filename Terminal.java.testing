@@ -39,7 +39,14 @@ public final class Terminal {
         }
     }
 
-    public static final Output error = new Output() {};
+    public static final Output error = new Output()
+    {
+        public String toString()
+        {
+            return "Error";
+        }
+    };
+    public static final Output ok = new StringOutput("Ok");
 
     private static Queue<String> pendingInput;
     private static ArrayList<Output> output;
