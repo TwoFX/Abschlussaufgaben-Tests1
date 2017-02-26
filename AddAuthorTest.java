@@ -29,6 +29,8 @@ public class AddAuthorTest
             "add author ,",
             "add author A,",
             "add author ,A",
+            "add author  ,B",
+            "add author , ",
             "add author ,A,B",
             "add author A,,B",
             "add author A,B,",

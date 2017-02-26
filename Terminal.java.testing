@@ -10,11 +10,11 @@ import java.util.*;
  */
 public final class Terminal {
 
-    public interface Output
+    public static class Output
     {
     }
 
-    public static class StringOutput implements Output
+    public static class StringOutput extends Output
     {
         private String content;
 
@@ -47,6 +47,28 @@ public final class Terminal {
         }
     };
     public static final Output ok = new StringOutput("Ok");
+
+    public static Output[] strs(String... strings)
+    {
+        Output[] result = new Output[strings.length];
+
+        for (int i = 0; i < strings.length; i++)
+        {
+            result[i] = new StringOutput(strings[i]);
+        }
+
+        return result;
+    }
+
+    public static Output[] nok(int n)
+    {
+        return Collections.nCopies(n, Terminal.ok).toArray(new Output[0]);
+    }
+
+    public static Output[] nerror(int n)
+    {
+        return Collections.nCopies(n, Terminal.error).toArray(new Output[0]);
+    }
 
     private static Queue<String> pendingInput;
     private static ArrayList<Output> output;

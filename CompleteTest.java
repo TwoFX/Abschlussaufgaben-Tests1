@@ -35,6 +35,7 @@ public class CompleteTest
         // are tested elsewhere.
         String[] commands = new String[]
         {
+            "exit",
             "qui",
             "quitt",
             "add Eniola,Lowry",
