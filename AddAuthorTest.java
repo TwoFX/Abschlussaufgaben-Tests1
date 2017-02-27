@@ -144,7 +144,7 @@ public class AddAuthorTest
             "add author Markus,HimmEl",
             "add author Markus,HimmeL",
             "add author Markus,HimMel",
-            "add author Markus Himmel",
+            "add author Markus,Himmel",
             "quit");
 
         Console.main(null);
