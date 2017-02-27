@@ -47,6 +47,14 @@ public class ListPublicationsTest
             "publications by , ",
             "publications by A B,b",
             "publications by b,A B",
+            "foreign citations of",
+            "foreign citations of ",
+            "foreign citations of  ",
+            "foreign citations of ,",
+            "foreign citations of,",
+            "foreign citations of , ",
+            "foreign citations of A B,b",
+            "foreign citations of b,A B",
             "in proceedings",
             "in proceedings ",
             "in proceedings,",
@@ -175,6 +183,47 @@ public class ListPublicationsTest
 
         ArrayList<Terminal.Output> expected = new ArrayList<>();
         expected.addAll(Collections.nCopies(commands.length - 1, Terminal.error));
+        expected.add(Terminal.ok);
+
+        assertArrayEquals(expected.toArray(), Terminal.getOutput());
+        Terminal.finish();
+    }
+
+    @Test
+    public void ForeignCitationsOfInvalidArgumentFormatTest()
+    {
+        String[] commands = new String[]
+        {
+            "add author A,B",
+            "add author C,D",
+            " foreign citations of A B",
+            "foreign citations of A B ",
+            "foreign citations of A,B",
+            "foreign citations of A;B",
+            "foreign citations A B",
+            "foreign citations ofaaaa A B",
+            "foreign citations ofA B",
+            "foreign citations of A B;",
+            "foreign citations of A B;C D",
+            "foreign citations of ;A B",
+            "foreign citations of A B,",
+            "foreign citations of ,A B",
+            "foreign citations of A B,C D",
+            "foreign citations of ,A B",
+            "foreign citations of  A B",
+            "foreign citations of A  B",
+            "foreign citations of A B, ",
+            "quit"
+        };
+
+        Terminal.initialize(commands);
+
+        Console.main(null);
+
+        ArrayList<Terminal.Output> expected = new ArrayList<>();
+        expected.add(Terminal.ok);
+        expected.add(Terminal.ok);
+        expected.addAll(Collections.nCopies(commands.length - 3, Terminal.error));
         expected.add(Terminal.ok);
 
         assertArrayEquals(expected.toArray(), Terminal.getOutput());
@@ -412,6 +461,45 @@ public class ListPublicationsTest
     }
 
     @Test
+    public void ForeignCitationsOfValidArgumentsTest()
+    {
+        String[] commands = new String[]
+        {
+            "add author A,A",
+            "add author B,A",
+            "add author C,A",
+            "add author D,A",
+            "add journal A,A",
+            "add article to journal A:p0,1999,A",
+            "add article to journal A:p1,2000,A",
+            "add article to journal A:p2,2000,A",
+            "add article to journal A:p3,2000,A",
+            "cites p1,p0",
+            "cites p2,p0",
+            "cites p3,p0",
+            "written-by p0,A A",
+            "written-by p1,A A;B A",
+            "written-by p2,B A;C A",
+            "written-by p3,C A;D A",
+            "foreign citations of A A",
+            "quit"
+        };
+
+        Terminal.initialize(commands);
+
+        Console.main(null);
+
+        ArrayList<Terminal.Output> expected = new ArrayList<>();
+        expected.addAll(Collections.nCopies(commands.length - 2, Terminal.ok));
+        expected.add(new Terminal.StringOutput("p3"));
+        expected.add(Terminal.ok);
+
+        assertArrayEquals(expected.toArray(), Terminal.getOutput());
+        Terminal.finish();
+
+    }
+
+    @Test
     public void PublicationsByAllowDuplicateAuthorTest()
     {
         String[] commands = new String[]
@@ -507,6 +595,24 @@ public class ListPublicationsTest
             Terminal.error,
             Terminal.ok
         }, Terminal.getOutput());
+        Terminal.finish();
+    }
+
+    @Test
+    public void ForeignCitationsOfAuthorMustExistTest()
+    {
+        String[] commands = new String[]
+        {
+            "foreign citations of A B",
+            "quit"
+        };
+
+        Terminal.initialize(commands);
+
+        Console.main(null);
+
+        assertArrayEquals(new Terminal.Output[] { Terminal.error, Terminal.ok },
+            Terminal.getOutput());
         Terminal.finish();
     }
 
@@ -641,6 +747,24 @@ public class ListPublicationsTest
             Collections.nCopies(commands.length - 1, Terminal.ok));
 
         assertArrayEquals(expected.toArray(), Terminal.getOutput());
+        Terminal.finish();
+    }
+
+    @Test
+    public void ForeignCitationsOfDoNotPrintNewlinesTest()
+    {
+        String[] commands = new String[]
+        {
+            "add author A,B",
+            "foreign citations of A B",
+            "quit"
+        };
+
+        Terminal.initialize(commands);
+
+        Console.main(null);
+
+        assertArrayEquals(Terminal.strs("Ok", "Ok"), Terminal.getOutput());
         Terminal.finish();
     }
 
