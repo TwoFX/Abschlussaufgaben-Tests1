@@ -100,7 +100,11 @@ public final class Terminal {
     }
 
     public static void printLine(final Object object) {
-        output.add(new StringOutput(object.toString()));
+		String[] lines = object.toString().split(System.lineSeparator());
+		for (int i = 0; i < lines.length; i++)
+		{
+			output.add(new StringOutput(lines[i]));
+		}
     }
 
     public static void printLine(final char[] charArray) {
