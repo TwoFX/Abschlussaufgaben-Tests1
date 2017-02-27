@@ -73,7 +73,7 @@ public class CoauthorsTest
             "add article to journal A:c,2000,A",
             "written-by a,A B;C D",
             "written-by b,A B;C D;E F",
-            "written-by c,C D;E F",
+            "written-by c,C D;E F;G H",
             "coauthors of A B",
             "quit"
         };
