@@ -26,6 +26,7 @@ public class WrittenByTest
             "add author A,B",
             "written-by a",
             "written-by A B",
+            "written-by a,A  B",
             "written-by a,",
             "written-by a, ",
             "written-by a,  ",

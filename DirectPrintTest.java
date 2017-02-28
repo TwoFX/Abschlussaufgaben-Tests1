@@ -45,6 +45,8 @@ public class DirectPrintTest
             "direct print journal ieee:5 A,,,A,A,2000",
             "direct print journal bla:A A,B A,C A,A,A,A,2000",
             "direct print conference bla:A A,B A,C A,A,A,2000",
+            "direct print conference ieee:,A B,A C,A,A,A,2000",
+            "direct print journal ieee:,A B,A C,A,A,2000",
             "quit"
         };
 
