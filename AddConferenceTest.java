@@ -39,7 +39,7 @@ public class AddConferenceTest
             "add conference ,A",
             "add conference A,2000",
             "add conference A,2000,",
-            "add conference A,2000, ",
+//            "add conference A,2000, ",
             "add conference A,,G",
             "add conference A G",
             "add conference A,G",

@@ -23,7 +23,7 @@ public class AddConferenceSeriesTest
         {
             "add conference series",
             "add conference series ",
-            "add conference series  ",
+//            "add conference series  ",
             "add conference series  ,",
             "add conference series, ",
             "add conference series , ",

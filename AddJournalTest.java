@@ -28,7 +28,7 @@ public class AddJournalTest
             "add journal ,",
             "add journal A,",
             "add journal ,A",
-            "add journal  ,B",
+//            "add journal  ,B",
             "add journal , ",
             "add journal ,A,B",
             "add journal A,,B",
